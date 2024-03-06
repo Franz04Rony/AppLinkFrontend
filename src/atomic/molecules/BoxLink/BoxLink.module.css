@@ -1,0 +1,31 @@
+.box {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 12px;
+    padding: 7px;
+    width: 100%;
+    user-select: none;
+    cursor: pointer;
+}
+
+.picture{
+    width: 48px;
+}
+
+.picture img{
+    border: 0px solid black;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.text{
+    font-size: 14px;
+    line-height: 16px;
+
+}
+
+.box:hover{
+    background-color: #E8E5EC;
+}

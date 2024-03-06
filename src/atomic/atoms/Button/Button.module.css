@@ -1,0 +1,17 @@
+.button{
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: 14px;
+    height: 32px;
+    border-radius: 32px;
+    align-items: center;
+    cursor: pointer;
+    padding: 0px 10px;
+    border: 0px solid #fff;
+    user-select: none;
+}
+
+.button:hover{
+    background-color: var(--color-primary-hover);
+}
+

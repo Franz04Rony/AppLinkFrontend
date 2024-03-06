@@ -1,0 +1,23 @@
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #18a77361;
+    padding: 10px 0px;
+}
+
+.perfil{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.perfil img {
+    width: 70px;    
+}
+
+.buttonGroup{
+    display: flex;
+    gap: 0.5rem;
+}
+
