@@ -7,14 +7,17 @@ import { AppRouter } from './routes/AppRouter'
 import 'minireset.css'
 import '../src/styles/global.css'
 import '../src/styles/variables.css'
-import { UserProvider } from './context/UserProvider'
+import { Provider } from 'react-redux'
+import { store } from './store/store'
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <UserProvider>
+    <Provider store={store}>
       <BrowserRouter>
         <AppRouter />
       </BrowserRouter>
-    </UserProvider>
+    </Provider>
+
   </React.StrictMode>
 )

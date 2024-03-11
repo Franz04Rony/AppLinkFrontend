@@ -1,16 +1,16 @@
-import { useContext, useState } from "react"
+import { useState } from "react"
 import Button from "../atomic/atoms/Button/Button"
 import { Header } from "../atomic/molecules/Header/Header"
 import s from './styles/UpdateUser.module.css'
-import { useLocation } from "react-router-dom"
-import { getUser } from "../API/getUser"
-import { UserContext } from "../context/createContext"
+import { useDispatch, useSelector } from "react-redux"
+import { onAddLink } from "../store/slices/loginSlice"
 
 export const UpdateUser = ({
   
 }) => {
-  
-    const {user, setUser} = useContext(UserContext)
+
+    const {user} = useSelector((state)=> state.login)
+    const dispatch = useDispatch()
 
     const [data, setData] = useState({
         image: null,
@@ -35,7 +35,7 @@ export const UpdateUser = ({
       patchData(`http://127.0.0.1:3001/api/users/${userID}`,{
         links: newLinks
       })
-      setUser({
+      dispatch(onAddLink({
         ...user,
         links:[
           ...links,
@@ -45,7 +45,7 @@ export const UpdateUser = ({
             link: data.link
           }
         ]
-      })
+      }))
     }
 
     const uploadImage = async(event) =>{
@@ -65,9 +65,6 @@ export const UpdateUser = ({
   return (
     <div>
       <Header
-        user={user.user}
-        links={user.links}
-        isAuthorized={true}
       />
       <div className={s.box}>
         <div className={s.header}>
@@ -75,7 +72,7 @@ export const UpdateUser = ({
           <h1 className={s.title}> Add a new link </h1>
           <Button
             label="add"
-            onClick={() => handleClick(user.links,data, user.user.userID)} 
+            onClick={() => handleClick(user.links,data, user.userID)} 
           />
         </div>
         <div className={s.form}>

@@ -1,65 +1,25 @@
 import { Link, useNavigate } from 'react-router-dom'
 import Button from '../atomic/atoms/Button/Button'
 import s from './styles/Login.module.css'
-import { useContext, useState } from 'react'
-import { UserContext } from '../context/createContext'
-import { getUser } from '../API/getUser'
+import {useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUser } from '../store/slices/thunk'
 
 
 export const Login = () => {
-
-    const {user, setUser} = useContext(UserContext)
-
-    const navigate = useNavigate()
-
-    const goWelcome = () => {
-        navigate("/welcome")
-    }
+    
+    const dispatch = useDispatch()
 
     const [data, setData] = useState({
         name: "",
         password: ""
     })
-    const [error, setError] = useState("")
 
-    // todo: poner postData en un archivo a parte y solo importarlo
-    const postData = async(url = '', data = {}) => {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-              },
-            body: JSON.stringify(data)
-        })
-        return response
+    const navigate = useNavigate()
+
+    const goWelcome = () => {
+        navigate("/")
     }
-
-    const handleLogin = async(data) => {
-        const response = await postData(`http://127.0.0.1:3001/api/users/login`,{
-            name: data.name,
-            password: data.password
-        })
-        data = await response.json()
-
-        if(response.status != 201){
-            setError(data.message)
-        }
-        else{
-            localStorage.setItem('jwt', data.token)
-
-            const resp = await fetch(`http://127.0.0.1:3001/api/users/private`, {
-                headers: {
-                    Authorization: `Bearer ${data.token}`,
-                },
-            })
-            const dataUser = await resp.json() 
-            setUser({
-                user: dataUser.user,
-                links: dataUser.user.links
-            })
-            navigate("/home")
-        }
-      }
 
   return (
     <div>
@@ -96,7 +56,7 @@ export const Login = () => {
                         onChange={ e =>setData({...data, password: e.target.value})}
                     />
                 </div>
-                <p>{error}</p>
+                <p></p>
 
                 <div className={s.buttonBox}>
                     <Button
@@ -105,7 +65,7 @@ export const Login = () => {
                     />
                     <Button
                         label="Entrar"
-                        onClick={() => handleLogin(data)}
+                        onClick={() => dispatch(getUser(data))}
                     />
                 </div>
             </div>

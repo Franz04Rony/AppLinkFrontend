@@ -8,7 +8,7 @@ export const Register = () => {
     const navigate = useNavigate()
 
     const goWelcome = () => {
-        navigate("/welcome")
+        navigate("/")
     }
 
     const [user, setUser] = useState({

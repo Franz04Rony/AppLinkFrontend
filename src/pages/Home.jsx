@@ -1,34 +1,27 @@
-import { useContext, useState } from "react"
-import { useEffect } from "react"
-import { useLocation } from "react-router-dom"
 
+import { useSelector } from "react-redux"
 import {PerfilPicture} from "../atomic/atoms/PerfilPicture/PerfilPicture"
 import { BoxLink } from "../atomic/molecules/BoxLink/BoxLink"
 import { Header } from "../atomic/molecules/Header/Header"
 
-import { getUser } from "../API/getUser"
-
 import s from './styles/Home.module.css'
-import { UserContext } from "../context/createContext"
 
 
-export const Home = ({}) => {
+export const Home = () => {
   
-  const {user, setUser} = useContext(UserContext)
-  const [isAuthorized, setIsAuthorized] = useState(true)
+  const {user} = useSelector((state)=> state.login )
+
+  console.log(user)
   
   return (
     <>
-      <Header 
-        user={user.user}
-        links={user.links}
-        isAuthorized={isAuthorized}
+      <Header
       />
       <div className={s.MainBox}>
         <div className={s.box}>
           <div className={s.picture}>
-            <PerfilPicture src={user.user.perfilImage}/>
-            <div>{user.user.name}</div>
+            <PerfilPicture src={user.perfilImage}/>
+            <div>{user.name}</div>
           </div>
           {
             user.links.map((e)=>(

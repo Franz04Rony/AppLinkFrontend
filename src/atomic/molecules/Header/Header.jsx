@@ -1,3 +1,5 @@
+import { useDispatch } from 'react-redux'
+import { Logout } from '../../../store/slices/thunk'
 import {Button} from '../../atoms/Button/Button'
 import {PerfilPicture} from '../../atoms/PerfilPicture/PerfilPicture'
 import s from './Header.module.css'
@@ -5,10 +7,11 @@ import s from './Header.module.css'
 import { useNavigate } from 'react-router-dom'
 
 export const Header = ({
-    links,
-    user,
-    isAuthorized
+    isAuthorized = true
 }) => {
+
+    const dispatch = useDispatch()
+
     const navigate = useNavigate()
 
     const addNewLink = () => {
@@ -29,54 +32,46 @@ export const Header = ({
   return (
     <nav className={s.header}>
         <div className={s.perfil}>
-        {
-            isAuthorized ?
-            <>
-                <PerfilPicture 
-                    src = {user.perfilImage}
-                />
-                <div>
-                    {user.name}
-                </div>
-            </>
-            :
-            <h1 style={{fontSize:20+'px'}}> LinkApp</h1>
-        }
             
         </div>
         <div className={s.buttonGroup}>
         {
-            isAuthorized ? 
-            <>
-                <Button 
-                    label = 'Home'
-                    onClick = {returnHome}
+            isAuthorized ?
+            (
+                <>
+                    <Button 
+                        label = 'Home'
+                        onClick = {returnHome}
+                        />
+
+                    <Button
+                        label = 'Add new link'
+                        onClick = {addNewLink}
                     />
 
-                <Button
-                    label = 'Add new link'
-                    onClick = {addNewLink}
-                />
-            </>
-            :
-            <>
-                <Button 
-                    label = 'Register'
-                    onClick = {GoRegister}
+                    <Button
+                        label = 'Logout'
+                        onClick = {()=> dispatch(Logout())}
                     />
-
-                <Button
+                </>
+            ) :
+            (
+                <>
+                    <Button
                     label = 'Login'
                     onClick = {GoLogin}
                 />
-            </>
+
+                <Button
+                    label = 'Register'
+                    onClick = {GoRegister}
+                />
+                </>
+            )
+            
         }
         </div>
         
     </nav>
   )
-}
-
-Header.defaultProps = {
-    profileName: 'Senku Ishigami'
 }
