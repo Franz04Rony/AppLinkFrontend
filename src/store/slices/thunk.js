@@ -9,7 +9,6 @@ export const getUser = (user) => {
                 name: user.name,
                 password: user.password
             })
-            console.log(data)
             localStorage.setItem("jwt", data.token)
             dispatch(onLogin(data))
         } catch (error) {
@@ -49,5 +48,26 @@ export const Logout = () => {
         localStorage.clear()
         dispatch(onLogout())
         // redirigir a página de login o welcome
+    }
+}
+
+export const startRegister = (user) => {
+    return async(dispatch, getState) => {
+        dispatch( onChecking() )
+        try{
+            const {data} = await authApi.post("/api/users/register", {
+                name: user.name,
+                password: user.password,
+                perfilImage: user.perfilImage
+            })
+            localStorage.setItem("jwt", data.token)
+            dispatch(onLogin(data))
+        } catch (error) {
+            dispatch( onLogout('Vuelva a intentarlo'))
+            setTimeout(()=> {
+                dispatch( clearErrorMessage() )
+            }, 10)
+        }
+
     }
 }

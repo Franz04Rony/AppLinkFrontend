@@ -10,8 +10,6 @@ import s from './styles/Home.module.css'
 export const Home = () => {
   
   const {user} = useSelector((state)=> state.login )
-
-  console.log(user)
   
   return (
     <>

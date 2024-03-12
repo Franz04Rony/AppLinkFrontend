@@ -2,14 +2,12 @@ import { useNavigate } from 'react-router-dom'
 import Button from '../atomic/atoms/Button/Button'
 import s from './styles/Register.module.css'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { startRegister } from '../store/slices/thunk'
 
 export const Register = () => {
 
-    const navigate = useNavigate()
-
-    const goWelcome = () => {
-        navigate("/")
-    }
+    const dispatch = useDispatch()
 
     const [user, setUser] = useState({
         name: "",
@@ -17,28 +15,10 @@ export const Register = () => {
         password: ""
     })
 
-    // todo: poner postData en un archivo a parte y solo importarlo
-    const postData = async(url = '', data = {}) => {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-              },
-            body: JSON.stringify(data)
-        })
-        return response
-    }
+    const navigate = useNavigate()
 
-    const handleRegister = async(user) => {
-        try {
-            await postData("http://127.0.0.1:3001/api/users/register", {
-                name: user.name,
-                perfilImage: user.perfilImage,
-                password: user.password,
-            })
-            navigate("/welcome")
-        }
-        catch (error){ console.log(error) }
+    const goWelcome = () => {
+        navigate("/")
     }
 
   return (
@@ -80,7 +60,7 @@ export const Register = () => {
                 <label className={s.image}>
                     <p>Perfil Image (Upload your image -optional-)</p>
                     {/* <img src={data.image ? data.image : "https://th.bing.com/th/id/OIG.s9mB6..wYYm1x1cRK3wA?pid=ImgGn"} alt="nueva imagen" /> */}
-                    <img src="https://th.bing.com/th/id/OIG.PqoI5UVOCAGSET4xwMgq?pid=ImgGn" alt="nueva imagen" />
+                    <img src="https://www.petlife.mx/u/fotografias/m/2023/5/16/f768x1-2048_2175_5050.jpg" alt="nueva imagen" />
                     <input 
                         type="file" 
                         name="upload-img" 
@@ -96,7 +76,7 @@ export const Register = () => {
                     />
                     <Button
                         label="Registrar"
-                        onClick={e => handleRegister(user)}
+                        onClick={() => dispatch(startRegister(user)) }
                     />
                 </div>
             </div>
