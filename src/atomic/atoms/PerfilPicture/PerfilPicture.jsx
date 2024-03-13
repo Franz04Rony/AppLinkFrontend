@@ -11,8 +11,4 @@ export const PerfilPicture = ({
   )
 }
 
-PerfilPicture.defaultProps = {
-    src: "src\\atomic\\atoms\\PerfilPicture\\takagi-1.png",
-}
-
 export default PerfilPicture

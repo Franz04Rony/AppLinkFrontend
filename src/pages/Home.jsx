@@ -19,7 +19,7 @@ export const Home = () => {
         <div className={s.box}>
           <div className={s.picture}>
             <PerfilPicture src={user.perfilImage}/>
-            <div>{user.name}</div>
+            <div className={s.username}>{user.name}</div>
           </div>
           {
             user.links.map((e)=>(

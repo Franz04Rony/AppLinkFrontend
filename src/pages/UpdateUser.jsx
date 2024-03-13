@@ -4,6 +4,7 @@ import { Header } from "../atomic/molecules/Header/Header"
 import s from './styles/UpdateUser.module.css'
 import { useDispatch, useSelector } from "react-redux"
 import { onAddLink } from "../store/slices/loginSlice"
+import { Planet } from "../icons/icons"
 
 export const UpdateUser = ({
   
@@ -18,6 +19,8 @@ export const UpdateUser = ({
         label: ""
     })
 
+    const [error, setError] = useState('')
+
     const patchData = async(url = '', data = {}) => {
       await fetch(url, {
         method: 'PATCH',
@@ -27,41 +30,35 @@ export const UpdateUser = ({
         body: JSON.stringify(data)
       })
       setData({...data, image: null, link: "", label: ""})
+      setError("Link agregado correctamente :)")
       // return response.json()
     }
 
     const handleClick = async(links, data, userID) => {
-      const newLinks = [...links, data]
-      patchData(`http://127.0.0.1:3001/api/users/${userID}`,{
-        links: newLinks
-      })
-      dispatch(onAddLink({
-        ...user,
-        links:[
-          ...links,
-          {
-            image: data.image,
-            label: data.label,
-            link: data.link
-          }
-        ]
-      }))
+      if(data.label && data.link){
+
+        const newLinks = [...links, data]
+  
+        patchData(`http://127.0.0.1:3001/api/users/${userID}`,{
+          links: newLinks
+        })
+        dispatch(onAddLink({
+          ...user,
+          links:[
+            ...links,
+            {
+              image: `https://s2.googleusercontent.com/s2/favicons?domain_url=${data.link}`,
+              label: data.label,
+              link: data.link
+            }
+          ]
+        }))
+      }
+      else{
+        setError("Faltan rellenar campos!")
+      }
     }
-
-    const uploadImage = async(event) =>{
-      const formData = new FormData()
-      formData.append('file', event.target.files[0] )
-      const response = await fetch("http://127.0.0.1:3001/api/files/links", {
-        method: 'POST',
-        body: formData,
-    
-      })
-      const resp = await response.json()
-      const {secureUrl} = resp
-      setData({...data, image:secureUrl})
-
-    }
-
+   
   return (
     <div>
       <Header
@@ -77,35 +74,30 @@ export const UpdateUser = ({
         </div>
         <div className={s.form}>
 
-            <label className={s.image}>
-              <img src={data.image ? data.image : "https://tresubresdobles.com/wp-content/uploads/2021/04/skft-23aff38e10ee3c4e430a1f3450c4a01d.jpeg"} alt="nueva imagen" />
-              {/* <img src="https://th.bing.com/th/id/OIG.s9mB6..wYYm1x1cRK3wA?pid=ImgGn" alt="nueva imagen" /> */}
-              <input 
-                type="file" 
-                name="upload-img" 
-                accept="image/*"
-                onChange={ uploadImage }
-              />
-            </label>
+          <Planet/>
 
 
           <div className={s.newData}>
 
             <div className={s.inputBox}>
-              <input 
+              <label htmlFor="link">Link:</label>
+              <input
+                id="link"
                 type="text" 
                 autoComplete="off" 
                 minLength="0" 
                 maxLength="1023" 
                 placeholder="https://example.com" 
                 className={s.input}
-                onChange={e => setData({...data, link: e.target.value })}
+                onChange={e => setData({...data, link: e.target.value, image: `https://s2.googleusercontent.com/s2/favicons?domain_url=${e.target.value}`})}
                 value={data.link}
                 />
             </div>
 
             <div className={s.inputBox}>
-              <input 
+              <label htmlFor="title">Título:</label>
+              <input
+                id="title"
                 type="text" 
                 autoComplete="off" 
                 minLength="0"  
@@ -116,7 +108,7 @@ export const UpdateUser = ({
                 value={data.label}
                 />
             </div>
-
+            <span>{error}</span>
           </div>
         </div>
       </div>

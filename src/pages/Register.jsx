@@ -11,7 +11,8 @@ export const Register = () => {
 
     const [user, setUser] = useState({
         name: "",
-        perfilImage: "https://c4.wallpaperflare.com/wallpaper/269/887/661/anime-dr-stone-senku-ishigami-hd-wallpaper-preview.jpg",
+        perfilImage: "https://www.petlife.mx/u/fotografias/m/2023/5/16/f768x1-2048_2175_5050.jpg",
+        imageFile: null,
         password: ""
     })
 
@@ -19,6 +20,11 @@ export const Register = () => {
 
     const goWelcome = () => {
         navigate("/")
+    }
+
+    const displayImage = (event) => {
+        const newURL = URL.createObjectURL(event.target.files[0])
+        setUser({...user, imageFile: event.target.files[0], perfilImage: newURL})
     }
 
   return (
@@ -59,13 +65,14 @@ export const Register = () => {
 
                 <label className={s.image}>
                     <p>Perfil Image (Upload your image -optional-)</p>
-                    {/* <img src={data.image ? data.image : "https://th.bing.com/th/id/OIG.s9mB6..wYYm1x1cRK3wA?pid=ImgGn"} alt="nueva imagen" /> */}
-                    <img src="https://www.petlife.mx/u/fotografias/m/2023/5/16/f768x1-2048_2175_5050.jpg" alt="nueva imagen" />
+                    <img 
+                        src={user.perfilImage} alt="nueva imagen" 
+                        />
                     <input 
                         type="file" 
                         name="upload-img" 
                         accept="image/*"
-                        // onChange={ uploadImage }
+                        onChange={(e)=> displayImage(e)}
                     />
                 </label>
 

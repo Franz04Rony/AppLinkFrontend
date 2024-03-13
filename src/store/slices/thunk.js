@@ -54,11 +54,20 @@ export const Logout = () => {
 export const startRegister = (user) => {
     return async(dispatch, getState) => {
         dispatch( onChecking() )
+        let url = ""
+        url = user.perfilImage
         try{
+            if(user.imageFile !== null) {
+                let formData = new FormData()
+                formData.append('file', user.imageFile)
+                const link = await authApi.post("/api/files/links", formData)
+                const {secureUrl} = link.data
+                url = secureUrl
+            }
             const {data} = await authApi.post("/api/users/register", {
                 name: user.name,
                 password: user.password,
-                perfilImage: user.perfilImage
+                perfilImage: url
             })
             localStorage.setItem("jwt", data.token)
             dispatch(onLogin(data))

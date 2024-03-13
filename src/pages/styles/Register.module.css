@@ -49,10 +49,13 @@
 /* estilar input img */
 
 .image{
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
     user-select: none;
     cursor: pointer;
+    align-items: center;
     
 }
 
@@ -61,7 +64,8 @@
 }
 
 .image img{
-    width: 100%;
-    height: 100%;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
+    border-radius: 100000px;
 }

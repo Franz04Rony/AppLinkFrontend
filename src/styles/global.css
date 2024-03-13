@@ -18,3 +18,13 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #E2DFEE;
 }
+
+body {
+    color: var(--text);
+    background-color: var(--bg);
+}
+:root{
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+}

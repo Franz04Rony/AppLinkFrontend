@@ -16,7 +16,7 @@ export const BoxLink = ({
             onClick={ (e) => handleClick(link)}
         >
             <div className={s.picture}>
-                <img src={image} alt="An image to the current box" />
+                <img src={image} alt="An image to the current link" />
             </div>
 
             <div className={s.text}>
@@ -27,10 +27,4 @@ export const BoxLink = ({
 
         </div>
   )
-}
-
-BoxLink.defaultProps = {
-    image: "https://cdn.static.linkr.bio/thumb/80x80/cover/85/static/linkr/icon/thumbnails/4.ig.png?f=webp",
-    label: "Texto test prueba ggs :P",
-    link: "https://www.youtube.com",
 }
