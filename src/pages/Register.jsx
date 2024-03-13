@@ -2,11 +2,12 @@ import { useNavigate } from 'react-router-dom'
 import Button from '../atomic/atoms/Button/Button'
 import s from './styles/Register.module.css'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { startRegister } from '../store/slices/thunk'
 
 export const Register = () => {
 
+    const {errorMessage} = useSelector((state)=> state.login)
     const dispatch = useDispatch()
 
     const [user, setUser] = useState({
@@ -42,7 +43,7 @@ export const Register = () => {
                         autoComplete="off" 
                         minLength="0" 
                         maxLength="1023" 
-                        placeholder="MyCoolNickName" 
+                        placeholder="UsuarioRandom" 
                         className={s.input}
                         value={user.name}
                         onChange={ e => setUser({...user, name: e.target.value})}
@@ -56,7 +57,7 @@ export const Register = () => {
                         autoComplete="off" 
                         minLength="0" 
                         maxLength="1023" 
-                        placeholder="MyPassword123" 
+                        placeholder="MiContraseña123" 
                         className={s.input}
                         value={user.password}
                         onChange={ e => setUser({...user, password: e.target.value})}
@@ -64,7 +65,7 @@ export const Register = () => {
                 </div>
 
                 <label className={s.image}>
-                    <p>Perfil Image (Upload your image -optional-)</p>
+                    <p>Perfil Image (Sube una foto de perfil -opcional-)</p>
                     <img 
                         src={user.perfilImage} alt="nueva imagen" 
                         />
@@ -75,6 +76,15 @@ export const Register = () => {
                         onChange={(e)=> displayImage(e)}
                     />
                 </label>
+                <ul>
+                    {
+                        errorMessage?.response?.data.message.map((v)=>(
+                            <li key={v}>- {v}</li>
+                        ))
+                        
+                    }
+                
+                </ul>
 
                 <div className={s.buttonBox}>
                     <Button

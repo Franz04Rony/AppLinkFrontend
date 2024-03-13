@@ -14,7 +14,7 @@ export const getUser = (user) => {
         } catch (error) {
             dispatch( onLogout('Credenciales incorrectas'))
             setTimeout(()=> {
-                dispatch( clearErrorMessage() )
+                dispatch( onLogout(error))
             }, 10)
         }
 
@@ -47,7 +47,6 @@ export const Logout = () => {
     return (dispatch, getState) => {
         localStorage.clear()
         dispatch(onLogout())
-        // redirigir a página de login o welcome
     }
 }
 
@@ -72,9 +71,8 @@ export const startRegister = (user) => {
             localStorage.setItem("jwt", data.token)
             dispatch(onLogin(data))
         } catch (error) {
-            dispatch( onLogout('Vuelva a intentarlo'))
             setTimeout(()=> {
-                dispatch( clearErrorMessage() )
+               dispatch( onLogout(error))
             }, 10)
         }
 

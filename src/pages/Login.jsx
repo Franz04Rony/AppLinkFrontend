@@ -7,7 +7,8 @@ import { getUser } from '../store/slices/thunk'
 
 
 export const Login = () => {
-    
+
+    const {errorMessage} = useSelector((state)=> state.login)
     const dispatch = useDispatch()
 
     const [data, setData] = useState({
@@ -56,7 +57,13 @@ export const Login = () => {
                         onChange={ e =>setData({...data, password: e.target.value})}
                     />
                 </div>
-                <p></p>
+                <ul>
+                {
+                    errorMessage?.response?.data.message.map((v)=>(
+                        <li key={v}>- {v}</li>
+                    ))
+                }
+                </ul>
 
                 <div className={s.buttonBox}>
                     <Button

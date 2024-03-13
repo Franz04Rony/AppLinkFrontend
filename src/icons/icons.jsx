@@ -1,7 +1,7 @@
 export const Planet = ({width = 100, height=100}) => {
     return (
-        <svg fill="#838686" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-	    width={`${width}px`} height={`${height}px`} viewBox="0 0 72 72" enable-background="new 0 0 72 72" xml:space="preserve">
+        <svg fill="#838686" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" 
+	    width={`${width}px`} height={`${height}px`} viewBox="0 0 72 72" enableBackground="new 0 0 72 72" xmlSpace="preserve">
             <path d="M58.818,13.181C52.725,7.087,44.621,3.73,36.002,3.73C18.208,3.73,3.731,18.207,3.73,36
                 c0.001,17.793,14.478,32.27,32.272,32.27c8.619,0,16.723-3.357,22.816-9.453C64.915,52.723,68.271,44.619,68.27,36
                 C68.271,27.381,64.914,19.277,58.818,13.181z M53.851,47.952c0.817-3.186,1.319-6.634,1.439-10.245h8.924
