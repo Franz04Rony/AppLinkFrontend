@@ -59,7 +59,7 @@ export const Login = () => {
                 </div>
                 <ul>
                 {
-                    errorMessage?.response?.data.message.map((v)=>(
+                    errorMessage?.response?.data?.message.map((v)=>(
                         <li key={v}>- {v}</li>
                     ))
                 }

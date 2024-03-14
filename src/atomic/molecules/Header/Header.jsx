@@ -5,6 +5,7 @@ import {PerfilPicture} from '../../atoms/PerfilPicture/PerfilPicture'
 import s from './Header.module.css'
 
 import { useNavigate } from 'react-router-dom'
+import { Github } from '../../../icons/icons'
 
 export const Header = ({
     isAuthorized = true
@@ -31,9 +32,6 @@ export const Header = ({
 
   return (
     <nav className={s.header}>
-        <div className={s.perfil}>
-            
-        </div>
         <div className={s.buttonGroup}>
         {
             isAuthorized ?
@@ -70,6 +68,10 @@ export const Header = ({
             )
             
         }
+            <a href="https://github.com/Franz04Rony" target="_blank" className={s.link}>
+                <Github width={20} height={20} color={"fff"}/>
+                <span className={s.github}>Github</span>
+            </a>
         </div>
         
     </nav>

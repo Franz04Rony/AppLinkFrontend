@@ -3,14 +3,17 @@ import PropTypes from 'prop-types'
 
 export const Button = ({
     label,
-    onClick
+    onClick,
+    children
 }) => {
     return (
         <button 
         	className = {s.button}
 			onClick = {onClick}
         >
-            {label}
+            <span className={s.span}>
+            {label}{children}
+            </span>
         </button>
     )
 }

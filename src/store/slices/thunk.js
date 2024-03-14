@@ -14,7 +14,7 @@ export const getUser = (user) => {
         } catch (error) {
             dispatch( onLogout('Credenciales incorrectas'))
             setTimeout(()=> {
-                dispatch( onLogout(error))
+                dispatch( onLogout('error'))
             }, 10)
         }
 

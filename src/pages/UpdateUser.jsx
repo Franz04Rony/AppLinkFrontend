@@ -4,7 +4,7 @@ import { Header } from "../atomic/molecules/Header/Header"
 import s from './styles/UpdateUser.module.css'
 import { useDispatch, useSelector } from "react-redux"
 import { onAddLink } from "../store/slices/loginSlice"
-import { Planet } from "../icons/icons"
+import { Planet, Plus } from "../icons/icons"
 
 export const UpdateUser = ({
   
@@ -68,9 +68,11 @@ export const UpdateUser = ({
           <div></div>
           <h1 className={s.title}> Add a new link </h1>
           <Button
-            label="add"
-            onClick={() => handleClick(user.links,data, user.userID)} 
-          />
+            label="Add"
+            onClick={() => handleClick(user.links,data, user.userID)}
+          >
+            <Plus width={13} height={13} color={"BE3C88"}/>
+          </Button>
         </div>
         <div className={s.form}>
 
