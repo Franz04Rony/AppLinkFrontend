@@ -39,7 +39,7 @@ export const UpdateUser = ({
 
         const newLinks = [...links, data]
   
-        patchData(`http://127.0.0.1:3001/api/users/${userID}`,{
+        patchData(`https://applinkbackend.onrender.com/api/users/${userID}`,{
           links: newLinks
         })
         dispatch(onAddLink({
