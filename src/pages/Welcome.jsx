@@ -23,7 +23,7 @@ export const Welcome = () => {
               <span>Evita registrarte utilizando la cuenta de invitados:</span>
               <ul>
                 <li>UserName: Guest</li>
-                <li>Password: Guest123</li>
+                <li>Password: Guest123$</li>
               </ul>
             </div>
             
