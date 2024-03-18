@@ -5,6 +5,8 @@ Stack utilizado: React, React Router Dom v6 y Redux.
 
 Esta app consume el backend de: https://github.com/FronyV/AppLinkBackend, API también creada desde cero.
 
+Try the app: https://app-link-frontend.vercel.app
+
 ## Instalación y ejecución
 ```
 git clone https://github.com/Franz04Rony/AppLinkFrontend.git
