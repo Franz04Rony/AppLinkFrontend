@@ -68,7 +68,7 @@ export const Header = ({
             )
             
         }
-            <a href="https://github.com/Franz04Rony" target="_blank" className={s.link}>
+            <a href="https://github.com/Franz04Rony/AppLinkFrontend" target="_blank" className={s.link}>
                 <Github width={20} height={20} color={"fff"}/>
                 <span className={s.github}>Github</span>
             </a>
