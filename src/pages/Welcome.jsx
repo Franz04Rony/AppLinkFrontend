@@ -20,10 +20,11 @@ export const Welcome = () => {
 
           <aside className={s.note}>
             <div>
-              <span>Evita registrarte utilizando la cuenta de invitados:</span>
+              <p className={s.textPrimary}>Crea una cuenta y guarda tus páginas favoritas desde un solo sitio.</p>
+              <span className={s.textSecondary}>Evita registrarte utilizando la cuenta de invitados:</span>
               <ul>
-                <li>UserName: Guest</li>
-                <li>Password: Guest123$</li>
+                <li className={s.textSecondary}>UserName: Guest</li>
+                <li className={s.textSecondary}>Password: Guest123$</li>
               </ul>
             </div>
             

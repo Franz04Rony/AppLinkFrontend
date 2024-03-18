@@ -11,8 +11,8 @@ Try the app: https://app-link-frontend.vercel.app
 ```
 git clone https://github.com/Franz04Rony/AppLinkFrontend.git
 cd AppLinkFrontend
-pnpm install
-pnpm dev
+yarn install
+yarn dev
 ```
 
 ## to do:

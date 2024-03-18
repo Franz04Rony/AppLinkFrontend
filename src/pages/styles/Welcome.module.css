@@ -13,8 +13,6 @@
     display: flex;
     margin-left: 7rem;
     margin-right: 7rem;
-    flex-wrap: wrap;
-    
 }
 
 .note{
@@ -32,6 +30,15 @@
 .second{
     color: var(--general);
     transform: translate(2rem);
+}
+
+.textSecondary{
+    font-size: 18px;
+    color: rgb(228, 186, 237)
+}
+
+.textPrimary{
+    text-wrap: wrap;
 }
 
 @media ( width < 1450px ){
