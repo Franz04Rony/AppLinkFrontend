@@ -14,4 +14,4 @@ pnpm dev
 ```
 
 ## to do:
-- [x] Agregar opción DELETE en cada link del usuario.
+- [ ] Agregar opción DELETE en cada link del usuario.
